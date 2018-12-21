@@ -181,7 +181,12 @@ let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.jsx,*.js'
 "
 let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.ejs,*.js'
 
-let g:user_emmet_leader_key='<Tab>'
+" map leader key
+let mapleader = ","
+
+" emmet
+let g:user_emmet_node='a'
+let g:user_emmet_leader_key=','
 let g:user_emmet_settings = {
   \  'javascript.jsx' : {
     \      'extends' : 'jsx',
