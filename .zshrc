@@ -1,15 +1,34 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+# Add path to npm bin files
+export PATH=$HOME/.npm-global/bin:$PATH
+
+# Add path to browser
+export BROWSER="/usr/bin/google-chrome-stable"
+
 # Path to your oh-my-zsh installation.
-  export ZSH="/home/scott/.oh-my-zsh"
+export ZSH="/home/scott/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-# ZSH_THEME="powerlevel9k/powerlevel9k"
-ZSH_THEME="agnoster"
+ZSH_THEME="powerlevel9k/powerlevel9k"
+
+#################################################
+# Powerlevel9k Configuation
+#################################################
+POWERLEVEL9K_MODE="nerdfont-complete"
+
+POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR='\ue0c8'
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon root_indicator context dir vcs)
+
+POWERLEVEL9K_DISABLE_RPROMPT=true
+
+POWERLEVEL9K_OS_ICON_BACKGROUND="turquoise4"
+POWERLEVEL9K_OS_ICON_FOREGROUND="black"
+
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -102,3 +121,5 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 alias zshconfig="vim ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
