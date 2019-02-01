@@ -22,6 +22,8 @@ Plugin 'tomtom/tlib_vim'
 " Track the engine.
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
+Plugin 'epilande/vim-es2015-snippets'
+Plugin 'epilande/vim-react-snippets'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Close tags
 Plugin 'alvan/vim-closetag'
