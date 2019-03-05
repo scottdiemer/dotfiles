@@ -40,9 +40,6 @@ Plugin 'scrooloose/nerdtree'
 " auto-complete
 Plugin 'Shougo/neocomplete'
 
-" js html css  json jsx formater
-Plugin 'maksimr/vim-jsbeautify'
-
 " -------------------------------------------- REACT
 " https://jaxbot.me/articles/setting-up-vim-for-react-js-jsx-02-03-2015
 " lint - https://drivy.engineering/setting-up-vim-for-react/
@@ -77,12 +74,6 @@ Plugin 'powerline/fonts'
 Plugin 'jiangmiao/auto-pairs'
 " Easy directory creation
 Plugin 'duggiefresh/vim-easydir'
-
-" Syntax checking
-" Plugin 'vim-syntastic/syntastic'
-
-" Generator of random dummy/filler text
-" Plugin 'tkhren/vim-fake'
 
 call vundle#end()	" required
 
@@ -136,20 +127,6 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
-" Correct Formatting
-map <c-f> :call JsBeautify()<cr>
-" or
-autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
-" for json
-autocmd FileType json noremap <buffer> <c-f> :call JsonBeautify()<cr>
-" for jsx
-autocmd FileType jsx noremap <buffer> <c-f> :call JsxBeautify()<cr>
-autocmd FileType js noremap <buffer> <c-f> :call JsxBeautify()<cr>
-" for html
-autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
-" for css or scss
-autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
-" treat ejs like html
 au BufNewFile,BufRead *.ejs set filetype=html
 
 syntax on
@@ -219,6 +196,9 @@ let g:closetag_shortcut = '>'
 "
 let g:closetag_close_shortcut = '<leader>>'
 
+" Added to help with vim-jsx broken indention
+au! BufWrite *.jsx :normal gg=G`
+
 " Powerline setup
 set laststatus=2
 set encoding=utf-8
@@ -240,10 +220,11 @@ set number
 " set relativenumber "show relative line numbers
 
 " set indent
-set tabstop=4 " use 4 spaces to represent tab
-set shiftwidth=4 " use 4 spaces when indenting with >
+set shiftwidth=2 " use 2 spaces when indenting with >
+set tabstop=2 
 set expandtab
 set autoindent " copy indent from current lin when starting a new line
+set smartindent
 
 " tell vim to use an undo file
 set undofile
