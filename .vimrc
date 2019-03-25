@@ -27,6 +27,8 @@ Plugin 'epilande/vim-react-snippets'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Close tags
 Plugin 'alvan/vim-closetag'
+" Highlights Matching Tags
+Plugin 'valloric/MatchTagAlways'
 " vim-scripts repos
 Plugin 'L9'
 " Plugin 'FuzzyFinder'
@@ -76,6 +78,11 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'duggiefresh/vim-easydir'
 
 call vundle#end()	" required
+
+" Allow MatchingTagAlways to highlight JSX
+let g:mta_filetypes = {
+\ 'javascript.jsx' : 1,
+\}
 
 " This is the default extra key bindings
 let g:fzf_action = {
@@ -176,9 +183,17 @@ let g:ale_sign_error = '●' " Less aggressive than the default '>>'
 let g:ale_sign_warning = '.'
 let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
 let g:ale_linters = {
-\   'javascript': ['standard'],
+\   'javascript': ['eslint'],
+\   'css': ['css-lint'],
+\   'sass': ['sass-lint'],
+\   'scss': ['scss-lint'],
 \}
-let g:ale_fixers = {'javascript': ['standard']}
+let g:ale_fixers = {
+\   'javascript': ['prettier', 'eslint'],
+\   'css': ['prettier', 'stylelint'],
+\   'sass': ['prettier', 'stylelint'],
+\   'scss': ['prettier', 'stylelint'],
+\}
 let g:ale_lint_on_save = 1
 let g:ale_fix_on_save = 1
 
