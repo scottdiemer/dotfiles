@@ -51,10 +51,14 @@ Plugin 'Shougo/neocomplete'
 "//--------------------------------------------
 " Add highlighting for JavaScript and JSX
 Plugin 'pangloss/vim-javascript'
+" Plugin 'chemzqm/vim-jsx-improve'
 Plugin 'mxw/vim-jsx'
 
 " Emmet for easier JSX
-Plugin 'mattn/emmet-vim'
+Plugin 'mattn/emmet-vim', {'for': ['javascript', 'jsx', 'html', 'css']}
+
+" Highlighting for styled-components
+Plugin 'styled-components/vim-styled-components'
 
 " Syntax Checking
 Plugin 'w0rp/ale'
@@ -137,7 +141,7 @@ let g:UltiSnipsEditSplit="vertical"
 au BufNewFile,BufRead *.ejs set filetype=html
 
 syntax on
-filetype plugin indent on     " required! 
+filetype plugin indent on     " required!
 "
 " Brief help
 " :PluginList          - list configured bundles
@@ -151,8 +155,9 @@ filetype plugin indent on     " required!
 " map NERDTree toggle to Ctrl+n
 map <C-n> :NERDTreeToggle<CR>
 " map Esc to CAPSLOCK
-au VimEnter * silent !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
-au VimLeave * silent !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Caps_Lock'
+" No longer needed as I mapped a key swap in gnome-tweak-tool
+" au VimEnter * silent !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+" au VimLeave * silent !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Caps_Lock'
 
 " allow python script to exec with <F9>
 nnoremap <buffer> <F9> :exec '!python' shellescape(@%, 1)<cr>
@@ -178,6 +183,7 @@ let g:user_emmet_settings = {
     \      'extends' : 'jsx',
     \  },
   \}
+autocmd FileType html,css,javascript.jsx EmmetInstall
 
 let g:ale_sign_error = '●' " Less aggressive than the default '>>'
 let g:ale_sign_warning = '.'
@@ -187,12 +193,15 @@ let g:ale_linters = {
 \   'css': ['css-lint'],
 \   'sass': ['sass-lint'],
 \   'scss': ['scss-lint'],
+\   'html': ['htmlhint'],
 \}
 let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['prettier', 'eslint'],
 \   'css': ['prettier', 'stylelint'],
 \   'sass': ['prettier', 'stylelint'],
 \   'scss': ['prettier', 'stylelint'],
+\   'html': ['prettier'],
 \}
 let g:ale_lint_on_save = 1
 let g:ale_fix_on_save = 1
@@ -236,7 +245,7 @@ set number
 
 " set indent
 set shiftwidth=2 " use 2 spaces when indenting with >
-set tabstop=2 
+set tabstop=2
 set expandtab
 set autoindent " copy indent from current lin when starting a new line
 set smartindent

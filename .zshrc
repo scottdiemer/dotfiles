@@ -89,6 +89,7 @@ plugins=(
   fzf
   node
   npm
+  vi-mode
 )
 
 source $ZSH/oh-my-zsh.sh
