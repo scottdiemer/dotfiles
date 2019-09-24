@@ -42,6 +42,12 @@ Plugin 'scrooloose/nerdtree'
 " auto-complete
 Plugin 'Shougo/neocomplete'
 
+" Markdown
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+
+" Markdown Preview
+Plugin 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 " -------------------------------------------- REACT
 " https://jaxbot.me/articles/setting-up-vim-for-react-js-jsx-02-03-2015
 " lint - https://drivy.engineering/setting-up-vim-for-react/
@@ -266,6 +272,23 @@ set number relativenumber
 " let g:syntastic_auto_loc_list = 1
 " let g:syntastic_check_on_open = 1
 " let g:syntastic_check_on_wq = 0
+
+" .............................................................................
+" plasticboy/vim-markdown
+" .............................................................................
+
+autocmd FileType markdown let b:sleuth_automatic=0
+autocmd FileType markdown set conceallevel=0
+autocmd FileType markdown normal zR
+
+let g:vim_markdown_frontmatter=1
+
+" .............................................................................
+" iamcco/markdown-preview.nvim
+" .............................................................................
+
+let g:mkdp_refresh_slow=1
+let g:mkdp_markdown_css='/home/scott/.vim/bundle/github-markdown.css'
 
 augroup numbertoggle
 		autocmd!
