@@ -1,21 +1,63 @@
 " Plugins will be downloaded under the specified directory
 call plug#begin('~/.config/nvim/plugins')
 
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+" Tree Style File Explorer
+Plug 'scrooloose/nerdtree'
+
+" IntelliSense
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+" Add snippets
+Plug 'honza/vim-snippets'
+" Plug 'epilande/vim-es2015-snippets'
+" Plug 'epilande/vim-react-snippets'
+
+"Add highlighting for JavaScript and JSX
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+" Add highlighting for styled-components
+Plug 'styled-components/vim-styled-components', { 'branch': 'main'}
+" Add highlighting for graphql
+Plug 'jparise/vim-graphql'
+
+" Status Bar
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+" Allows adding, editing, and removing surrounding characters and tags
 Plug 'tpope/vim-surround'
-Plug 'alvan/vim-closetag'
-Plug 'mattn/emmet-vim'
 
+" Adds closing tag
+Plug 'alvan/vim-closetag'
+
+" Highlights Matching Tags
+Plug 'valloric/MatchTagAlways'
+
+" Quickly creates tags from shorthand
+Plug 'mattn/emmet-vim', {'for': ['javascript', 'jsx', 'html', 'css']}
+
+" Theme for nvim
 Plug 'joshdick/onedark.vim'
+
+" Used to quickly comment or uncomment
+Plug 'tomtom/tcomment_vim'
+
+" Easy directory creation
+Plug 'duggiefresh/vim-easydir'
 
 " List ends here. Plugins become visible to NeoVim after this call
 call plug#end()
 
+" Airline
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+set t_Co=254
+let g:airline_solarized_bg='dark'
+
+" map NERDTree toggle to Ctrl+n
+map <C-n> :NERDTreeToggle<CR>
+
+" Location of nvim theme
 source $HOME/.config/nvim/themes/onedark.vim
 
 " emmet
@@ -31,17 +73,23 @@ autocmd FileType html,css,javascript.jsx EmmetInstall
 " integer value [0|1]
 " This will make the list of non-closing tags case-sensitive (e.g. `<Link>`     will be closed while `<link>` won't.)
  let g:closetag_emptyTags_caseSensitive = 1
- 
  " Shortcut for closing tags, default is '>'
- "
  let g:closetag_shortcut = '>'
- 
- 
  " Add > at current position without closing the current tag, default is ''
- "
  let g:closetag_close_shortcut = '<leader>>'
+ 
+ let g:javascript_plugin_flow = 1
+ " Don't require jsx entension
+ let g:jsx_ext_required = 0
+ 
+ 
 
+ " Allow MatchTagAlways to highlight JSX
+ let g:mta_filetypes = {
+       \ 'javascript.jsx' : 1,
+       \}
 
+" ***    Coc Configuration Start ***
 " TextEdit might fail if hidden is not set.
 set hidden
 
@@ -129,6 +177,8 @@ nmap <leader>rn <Plug>(coc-rename)
 " Formatting selected code.
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
+" *** Coc Configuration End ***
+
 
 " sync open file with NERDTree
 " " Check if NERDTree is open or active
@@ -148,17 +198,6 @@ endfunction
 " Highlight currently open buffer in NERDTree
 autocmd BufEnter * call SyncTree()
 
-
-" coc config
-let g:coc_global_extensions = [
-  \ 'coc-snippets',
-  \ 'coc-pairs',
-  \ 'coc-tsserver',
-  \ 'coc-eslint', 
-  \ 'coc-prettier', 
-  \ 'coc-json', 
-  \ 'coc-graphql',
-  \ ]
 
 " prettier command for coc
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
