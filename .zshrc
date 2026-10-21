@@ -8,7 +8,11 @@ export PATH=$HOME/.npm-global/bin:$PATH
 export BROWSER="/usr/bin/google-chrome-stable"
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/scott/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
+
+export NVM_DIR="/usr/share/nvm"
+[ -s "$NVM_DIR/init-nvm.sh" ] && source "$NVM_DIR/init-nvm.sh" # this loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion" # this loads nvm bash_completion
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -83,16 +87,16 @@ POWERLEVEL9K_OS_ICON_FOREGROUND="black"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  zsh-syntax-highlighting
-  zsh-autosuggestions
   git
   fzf
   node
   npm
   vi-mode
+  zsh-autosuggestions
+  zsh-syntax-highlighting
 )
 
-source $ZSH/oh-my-zsh.sh
+source "$ZSH/oh-my-zsh.sh"
 
 # User configuration
 
@@ -120,10 +124,9 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
+alias sudo='sudo '
 alias vim=nvim
 alias zshconfig="nvim ~/.zshrc"
-alias vimconfig="nvim ~/.config/nvim/init.vim"
-# alias vimconfig="vim ~/.vimrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-alias pbcopy='xclip -selection clipboard'
-alias pbpaste='xclip -selection clipboard -o'
+alias vimconfig="nvim ~/.config/nvim/init.lua"
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
